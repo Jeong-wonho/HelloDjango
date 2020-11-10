@@ -11,11 +11,11 @@
 
     <div class="row margin1050">
         <div class="col-12 text-right">
-            <button type="button" id="newbd"
+            <a href="{% url 'board:write' %}" id="newbd"
                     class="btn btn-light">
                 <i class="fa fa-plus-circle"> </i>
                 새글쓰기
-            </button>
+            </a>
         </div>
     </div><!-- 버튼들 -->
 
@@ -41,15 +41,17 @@
                         <th>10</th>
                         <th>128</th></tr>
 
-                    <c:forEach var="b" items="${bdlist}">
-                        <tr><td>${b.bno}</td>
-                        <td><a href="board/view.do?bno=${b.bno}">
-                                            ${b.title}</a></td>
-                        <td>${b.userid}</td>
-                        <td>${ fn:substring(b.regdate,0,10) }</td>
-                        <td>${b.thumbup}</td>
-                        <td>${b.views}</td></tr>
-                    </c:forEach>
+<!--                    <c:forEach var="b" items="${bdlist}">-->
+                    {% for b in bds %}
+                        <tr><td>{{b.id}}</td>
+                        <td><a href="/board/view/{{b.id}}">
+                                            {{b.title}}</a></td>
+                        <td>{{b.userid}}</td>
+                        <td>{{b.regdate|date:'Y-m-d'}}</td>
+                        <td>{{b.views}}</td>
+                        <td>{{b.thumbup}}</td></tr>
+                    {% endfor %}
+<!--                    </c:forEach>-->
 
                 </tbody>
             </table>
