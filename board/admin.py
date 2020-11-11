@@ -10,7 +10,7 @@ class BoardAdmin(admin.ModelAdmin):
 
 class EmployeeAdmin(admin.ModelAdmin):
     search_fields = ['fname','lname','jobid']
-    list_display = ['fname', 'lname', 'email', 'phone', 'hdate']
+    list_display = ['fname', 'lname', 'email', 'phone', 'hdate', 'sal']
     list_filter = ['hdate', 'jobid', 'deptid', 'mgrid']
 
 admin.site.register(Board,BoardAdmin)
