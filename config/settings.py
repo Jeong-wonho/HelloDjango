@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_xml'
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+REST_FRAMEWORK = {
+	'DEFAULT_PARSER_CLASSES': (
+	'rest_framework_xml.parsers.XMLParser',),
+	'DEFAULT_RENDERER_CLASSES':(
+	'rest_framework_xml.renderers.XMLRenderer',)
+}
