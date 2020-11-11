@@ -38,8 +38,24 @@ def write(request):
         form = BoardForm()
     return render(request, 'board/write.html', {'form':form})
 
-def update(request):
-    return render(request, 'board/update.html')
+def update(request, bid):
+    if request.method == 'POST':
+        form = BoardForm(request.POST)
+        if form.is_valid():
+            bd = Board.objects.get(id=bid)
+            bd.title = form.cleaned_data['title']
+            bd.contents = form.cleaned_data['contents']
+
+            bd.save()
+            return redirect('/board/list')
+    else:
+        board = Board.objects.get(id=bid)
+        bd = {'bd':board}
+
+    return render(request, 'board/update.html', bd)
+    # board = Board.objects.get(id=bid)
+    # bd = {'bd' : board }
+    # return render(request, 'board/update.html', bd)
 
 def delete(request, bid):
     bd = Board.objects.get(id=bid)
