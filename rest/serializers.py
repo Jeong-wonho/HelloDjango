@@ -7,7 +7,14 @@ class BoardSerializer(ModelSerializer): #list
         model = Board
         fields = ['id', 'title', 'userid', 'regdate', 'views', 'thumbup']
 
+
 class BoardDetailSerializer(ModelSerializer): #Detail
     class Meta:
         model = Board
         fields = ['id', 'title', 'userid', 'regdate', 'views', 'thumbup', 'contents']
+
+
+class BoardCreateSerializer(ModelSerializer): #Create
+    class Meta:
+        model = Board
+        fields = ['title', 'userid', 'contents']
